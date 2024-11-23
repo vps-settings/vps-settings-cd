@@ -1,0 +1,30 @@
+name: Build VPS Server
+
+on:
+  push:
+    branches:
+      - master  # Ajuste para o branch que você deseja monitorar
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-vps-server:
+    runs-on: ubuntu-latest
+    steps:
+      # Deploy no VPS usando SSH
+      - name: Build VPS Server
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            rm -rf doclinic-cd
+            git clone https://github.com/scheduling-controller/doclinic-cd.git
+            cd doclinic-cd
+
+            docker compose down
+            docker compose up -d
