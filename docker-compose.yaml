@@ -11,15 +11,11 @@ services:
   
   doclinic-frontend:
     image: cristianoaguiarofc/doclinic-frontend
-    ports:
-      - 4200:4200
     networks:
       - app-network
   
   doclinic-backend:
     image: cristianoaguiarofc/doclinic
-    ports:
-      - 8086:8086
     environment:
       - MONGO_URI_AUTHENTICATOR=${MONGO_URI_AUTHENTICATOR}
       - MONGO_URI_CLIENT=${MONGO_URI_CLIENT}
