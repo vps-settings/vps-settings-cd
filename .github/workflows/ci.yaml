@@ -22,9 +22,9 @@ jobs:
           key: ${{ secrets.VPS_PRIVATE_KEY }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            rm -rf doclinic-cd
-            git clone https://github.com/scheduling-controller/doclinic-cd.git
-            cd doclinic-cd
+            rm -rf scheduling-controller-cd
+            git clone https://github.com/scheduling-controller/scheduling-controller-cd.git
+            cd scheduling-controller-cd
 
             docker compose down
             docker compose up -d
