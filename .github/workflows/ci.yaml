@@ -27,6 +27,8 @@ jobs:
             cd scheduling-controller-cd
 
             docker compose down
+            
+            docker image prune -a -f
 
             export MONGO_URI_AUTHENTICATOR="${{ secrets.MONGO_URI_AUTHENTICATOR }}"
             export MONGO_URI_CLIENT="${{ secrets.MONGO_URI_CLIENT }}"
