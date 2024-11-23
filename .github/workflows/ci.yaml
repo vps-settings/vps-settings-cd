@@ -13,6 +13,12 @@ jobs:
   build-vps-server:
     runs-on: ubuntu-latest
     steps:
+      # Configurar a autenticação para GitHub
+      - name: Set up GitHub credentials
+        run: |
+          git config --global credential.helper store
+          echo "https://${{ secrets.GITHUB_ACTOR }}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
+
       # Deploy no VPS usando SSH
       - name: Build VPS Server
         uses: appleboy/ssh-action@v1.1.0
@@ -28,7 +34,3 @@ jobs:
 
             docker compose down
             docker compose up -d
-    env:
-          GIT_USERNAME: ${{ secrets.GH_USERNAME }}  # Nome do usuário GitHub (padrão em ações)
-          GIT_PASSWORD: ${{ secrets.GH_TOKEN }}  # Seu token GitHub
-    
