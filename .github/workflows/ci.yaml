@@ -29,9 +29,9 @@ jobs:
             docker compose down
 
             # Passando variáveis para o Docker Compose
-            MONGO_URI_AUTHENTICATOR=${{ secrets.MONGO_URI_AUTHENTICATOR }} \
-            MONGO_URI_CLIENT=${{ secrets.MONGO_URI_CLIENT }} \
-            MONGO_URI_ESTABLISHMENT=${{ secrets.MONGO_URI_ESTABLISHMENT }} \
-            MONGO_URI_SCHEDULING=${{ secrets.MONGO_URI_SCHEDULING }} \
+            MONGO_URI_AUTHENTICATOR=${{ secrets.MONGO_URI_AUTHENTICATOR }}
+            MONGO_URI_CLIENT=${{ secrets.MONGO_URI_CLIENT }}
+            MONGO_URI_ESTABLISHMENT=${{ secrets.MONGO_URI_ESTABLISHMENT }}
+            MONGO_URI_SCHEDULING=${{ secrets.MONGO_URI_SCHEDULING }}
 
             docker compose up -d
