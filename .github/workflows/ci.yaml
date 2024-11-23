@@ -26,5 +26,12 @@ jobs:
             git clone https://github.com/scheduling-controller/scheduling-controller-cd.git
             cd scheduling-controller-cd
 
-            docker compose down
-            docker compose up -d
+            docker-compose down
+
+            # Passando variáveis para o Docker Compose
+            MONGO_URI_AUTHENTICATOR=${{ secrets.MONGO_URI_AUTHENTICATOR }} \
+            MONGO_URI_CLIENT=${{ secrets.MONGO_URI_CLIENT }} \
+            MONGO_URI_ESTABLISHMENT=${{ secrets.MONGO_URI_ESTABLISHMENT }} \
+            MONGO_URI_SCHEDULING=${{ secrets.MONGO_URI_SCHEDULING }} \
+            
+            docker-compose up -d
