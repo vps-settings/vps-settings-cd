@@ -28,3 +28,8 @@ jobs:
 
             docker compose down
             docker compose up -d
+    env:
+          GIT_ASKPASS: /bin/echo
+          GIT_USERNAME: github-actions
+          GIT_PASSWORD: ${{ secrets.GH_TOKEN }}
+    
