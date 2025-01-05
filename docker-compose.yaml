@@ -16,6 +16,11 @@ services:
     networks:
       - app-network
   
+  doclinic-client-frontend:
+    image: cristianoaguiarofc/doclinic-client-frontend
+    networks:
+      - app-network
+
   doclinic-backend:
     image: cristianoaguiarofc/doclinic
     environment:
