@@ -29,6 +29,7 @@ jobs:
             docker compose down && \
             docker image prune -a -f && \
             export MONGO_URI_AUTHENTICATOR="${{ secrets.MONGO_URI_AUTHENTICATOR }}" && \
+            export MONGO_URI_CLIENT_AUTHENTICATOR="${{ secrets.MONGO_URI_CLIENT_AUTHENTICATOR }}" && \
             export MONGO_URI_CLIENT="${{ secrets.MONGO_URI_CLIENT }}" && \
             export MONGO_URI_ESTABLISHMENT="${{ secrets.MONGO_URI_ESTABLISHMENT }}" && \
             export MONGO_URI_SCHEDULING="${{ secrets.MONGO_URI_SCHEDULING }}" && \
