@@ -34,6 +34,8 @@ services:
 
   planningpokergo-backend:
     image: cristianoaguiarofc/planningpokergo-backend
+    ports:
+      - 8085:8080
     networks:
       - planningpokergo-network
 
