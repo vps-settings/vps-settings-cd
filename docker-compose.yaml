@@ -38,6 +38,11 @@ services:
     networks:
       - planningpokergo-network
 
+  planningpokergo-frontend:
+    image: cristianoaguiarofc/planningpokergo-frontend
+    networks:
+      - planningpokergo-network
+
 networks:
   app-network:
     driver: bridge
