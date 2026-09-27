@@ -33,6 +33,8 @@ jobs:
             STRIPE_WEBHOOK_SECRET=${{ secrets.COMPARECAI_STRIPE_WEBHOOK_SECRET }}
             EOF
             
+            docker compose -f docker-compose.comparecai.yml down
+
             # Baixa as imagens mais recentes do Docker Hub
             docker compose -f docker-compose.comparecai.yml pull
             

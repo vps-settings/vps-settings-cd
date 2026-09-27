@@ -21,6 +21,8 @@ jobs:
             git clone https://github.com/vps-settings/vps-settings-cd.git
             cd vps-settings-cd
             
+            docker compose -f docker-compose.planningpoker.yml down
+
             # Baixa as imagens mais recentes
             docker compose -f docker-compose.planningpoker.yml pull
             

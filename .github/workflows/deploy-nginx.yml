@@ -24,6 +24,8 @@ jobs:
             # Garante que as redes externas existem na VPS antes do deploy
             docker network create comparecai-network || true
             docker network create planningpokergo-network || true
+
+            docker compose -f docker-compose.nginx.yml down
             
             # Sobe o nginx
             docker compose -f docker-compose.nginx.yml up -d

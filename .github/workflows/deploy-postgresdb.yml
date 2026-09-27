@@ -25,6 +25,8 @@ jobs:
             POSTGRES_USER=${{ secrets.POSTGRES_USER }}
             POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
             EOF
+
+            docker compose -f docker-compose.postgres.yml down
             
             # Garante que as redes externas existem na VPS antes do deploy
             docker network create comparecai-network || true
