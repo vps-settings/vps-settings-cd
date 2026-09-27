@@ -1,11 +1,7 @@
 name: Deploy Nginx
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - 'docker-compose.nginx.yml'
-      - 'nginx.conf'
+  workflow_dispatch:
 
 jobs:
   deploy-nginx:

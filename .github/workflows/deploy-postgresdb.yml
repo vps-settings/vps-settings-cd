@@ -1,9 +1,7 @@
 name: Deploy Postgres
+
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - 'docker-compose.postgres.yml'
+  workflow_dispatch:
 
 jobs:
   deploy-postgres:

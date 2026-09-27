@@ -1,10 +1,7 @@
 name: Deploy CompareçAí
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - 'docker-compose.comparecai.yml'
+  workflow_dispatch:
 
 jobs:
   deploy-comparecai:

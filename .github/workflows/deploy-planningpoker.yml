@@ -1,10 +1,7 @@
 name: Deploy PlanningPokerGo
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-      - 'docker-compose.planningpoker.yml'
+  workflow_dispatch:
 
 jobs:
   deploy-planningpoker:
