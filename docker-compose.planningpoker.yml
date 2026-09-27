@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  planningpokergo-backend:
+    image: cristianoaguiarofc/planningpokergo-backend
+    container_name: planningpokergo-backend
+    restart: always
+    networks:
+      - planningpokergo-network
+
+  planningpokergo-frontend:
+    image: cristianoaguiarofc/planningpokergo-frontend
+    container_name: planningpokergo-frontend
+    restart: always
+    networks:
+      - planningpokergo-network
+
+networks:
+  planningpokergo-network:
+    external: true

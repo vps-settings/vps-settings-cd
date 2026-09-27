@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  comparecai-backend:
+    image: cristianoaguiarofc/comparecai-backend
+    container_name: comparecai-backend
+    restart: always
+    env_file:
+      - .env.comparecai
+    networks:
+      - comparecai-network
+
+  comparecai-frontend:
+    image: cristianoaguiarofc/comparecai-frontend
+    container_name: comparecai-frontend
+    restart: always
+    networks:
+      - comparecai-network
+
+networks:
+  comparecai-network:
+    external: true

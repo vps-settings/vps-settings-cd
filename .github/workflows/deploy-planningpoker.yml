@@ -1,0 +1,31 @@
+name: Deploy PlanningPokerGo
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'docker-compose.planningpoker.yml'
+
+jobs:
+  deploy-planningpoker:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Executar Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            rm -rf vps-settings-cd
+            git clone https://github.com/vps-settings/vps-settings-cd.git
+            cd vps-settings-cd
+            
+            # Baixa as imagens mais recentes
+            docker compose -f docker-compose.planningpoker.yml pull
+            
+            # Atualiza os containers sem interferir nos outros serviços
+            docker compose -f docker-compose.planningpoker.yml up -d --no-deps

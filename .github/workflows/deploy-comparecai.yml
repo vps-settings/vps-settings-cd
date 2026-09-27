@@ -1,0 +1,43 @@
+name: Deploy CompareçAí
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'docker-compose.comparecai.yml'
+
+jobs:
+  deploy-comparecai:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Executar Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            rm -rf vps-settings-cd
+            git clone https://github.com/vps-settings/vps-settings-cd.git
+            cd vps-settings-cd
+
+            cat << 'EOF' > .env.comparecai
+            DB_URL=${{ secrets.COMPARECAI_DB_URL }}
+            MAIL_HOST=${{ secrets.COMPARECAI_MAIL_HOST }}
+            MAIL_PORT=${{ secrets.COMPARECAI_MAIL_PORT }}
+            MAIL_USERNAME=${{ secrets.COMPARECAI_MAIL_USERNAME }}
+            MAIL_PASSWORD=${{ secrets.COMPARECAI_MAIL_PASSWORD }}
+            GOOGLE_CLIENT_ID=${{ secrets.COMPARECAI_GOOGLE_CLIENT_ID }}
+            GOOGLE_CLIENT_SECRET=${{ secrets.COMPARECAI_GOOGLE_CLIENT_SECRET }}
+            STRIPE_API_KEY=${{ secrets.COMPARECAI_STRIPE_API_KEY }}
+            STRIPE_WEBHOOK_SECRET=${{ secrets.COMPARECAI_STRIPE_WEBHOOK_SECRET }}
+            EOF
+            
+            # Baixa as imagens mais recentes do Docker Hub
+            docker compose -f docker-compose.comparecai.yml pull
+            
+            # Atualiza os containers de forma isolada
+            docker compose -f docker-compose.comparecai.yml up -d --no-deps
