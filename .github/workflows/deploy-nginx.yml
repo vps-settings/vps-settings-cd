@@ -1,0 +1,36 @@
+name: Deploy Nginx
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'docker-compose.nginx.yml'
+      - 'nginx.conf'
+
+jobs:
+  deploy-nginx:
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+      - name: Executar Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            rm -rf vps-settings-cd
+            git clone https://github.com/vps-settings/vps-settings-cd.git
+            cd vps-settings-cd
+            
+            # Garante que as redes externas existem na VPS antes do deploy
+            docker network create comparecai-network || true
+            docker network create planningpokergo-network || true
+            
+            # Sobe o nginx
+            docker compose -f docker-compose.nginx.yml up -d
+            
+            # Recarrega o Nginx sem derrubar as conexões atuais
+            docker exec nginx_proxy nginx -s reload
