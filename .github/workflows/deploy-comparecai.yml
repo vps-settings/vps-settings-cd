@@ -23,14 +23,13 @@ jobs:
 
             cat << 'EOF' > .env.comparecai
             DB_URL=${{ secrets.COMPARECAI_DB_URL }}
-            MAIL_HOST=${{ secrets.COMPARECAI_MAIL_HOST }}
-            MAIL_PORT=${{ secrets.COMPARECAI_MAIL_PORT }}
-            MAIL_USERNAME=${{ secrets.COMPARECAI_MAIL_USERNAME }}
-            MAIL_PASSWORD=${{ secrets.COMPARECAI_MAIL_PASSWORD }}
             GOOGLE_CLIENT_ID=${{ secrets.COMPARECAI_GOOGLE_CLIENT_ID }}
             GOOGLE_CLIENT_SECRET=${{ secrets.COMPARECAI_GOOGLE_CLIENT_SECRET }}
-            STRIPE_API_KEY=${{ secrets.COMPARECAI_STRIPE_API_KEY }}
-            STRIPE_WEBHOOK_SECRET=${{ secrets.COMPARECAI_STRIPE_WEBHOOK_SECRET }}
+            MAIL_HOST=${{ secrets.COMPARECAI_MAIL_HOST }}
+            MAIL_PASSWORD=${{ secrets.COMPARECAI_MAIL_PASSWORD }}
+            MAIL_PORT=${{ secrets.COMPARECAI_MAIL_PORT }}
+            MAIL_USERNAME=${{ secrets.COMPARECAI_MAIL_USERNAME }}
+            MERCADO_PAGO_ACCESS_TOKEN=${{ secrets.COMPARECAI_MERCADO_PAGO_ACCESS_TOKEN }}
             EOF
             
             docker compose -f docker-compose.comparecai.yml down
