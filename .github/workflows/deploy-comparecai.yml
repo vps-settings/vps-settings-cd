@@ -30,6 +30,7 @@ jobs:
             MAIL_PORT=${{ secrets.COMPARECAI_MAIL_PORT }}
             MAIL_USERNAME=${{ secrets.COMPARECAI_MAIL_USERNAME }}
             MERCADO_PAGO_ACCESS_TOKEN=${{ secrets.COMPARECAI_MERCADO_PAGO_ACCESS_TOKEN }}
+            TOKEN_ENCRYPTION_KEY=${{ secrets.COMPARECAI_TOKEN_ENCRYPTION_KEY }}
             EOF
             
             docker compose -f docker-compose.comparecai.yml down
