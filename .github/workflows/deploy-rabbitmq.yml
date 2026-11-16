@@ -22,7 +22,7 @@ jobs:
             cd vps-settings-cd
 
             cat << 'EOF' > .env.rabbitmq
-            RABBITMQ_USER=${{ secrets.RABBITMQ_USER }}
+            RABBITMQ_USERNAME=${{ secrets.RABBITMQ_USERNAME }}
             RABBITMQ_PASSWORD=${{ secrets.RABBITMQ_PASSWORD }}
             EOF
 

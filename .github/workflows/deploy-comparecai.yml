@@ -33,7 +33,7 @@ jobs:
             RABBITMQ_HOST=${{ secrets.COMPARECAI_RABBITMQ_HOST }}
             RABBITMQ_PASSWORD=${{ secrets.COMPARECAI_RABBITMQ_PASSWORD }}
             RABBITMQ_PORT=${{ secrets.COMPARECAI_RABBITMQ_PORT }}
-            RABBITMQ_USER=${{ secrets.COMPARECAI_RABBITMQ_USER }}
+            RABBITMQ_USERNAME=${{ secrets.COMPARECAI_RABBITMQ_USERNAME }}
             TOKEN_ENCRYPTION_KEY=${{ secrets.COMPARECAI_TOKEN_ENCRYPTION_KEY }}
             EOF
             
