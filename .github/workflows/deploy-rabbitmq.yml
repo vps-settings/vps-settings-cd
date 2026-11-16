@@ -22,8 +22,8 @@ jobs:
             cd vps-settings-cd
 
             cat << 'EOF' > .env.rabbitmq
-            RABBITMQ_USERNAME=${{ secrets.RABBITMQ_USERNAME }}
-            RABBITMQ_PASSWORD=${{ secrets.RABBITMQ_PASSWORD }}
+            RABBITMQ_DEFAULT_USER=${{ secrets.RABBITMQ_USERNAME }}
+            RABBITMQ_DEFAULT_PASS=${{ secrets.RABBITMQ_PASSWORD }}
             EOF
 
             docker compose -f docker-compose.rabbitmq.yml down
